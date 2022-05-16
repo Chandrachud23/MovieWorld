@@ -1,0 +1,4 @@
+.images-container{
+    flex: auto;
+    flex-wrap: wrap;
+}

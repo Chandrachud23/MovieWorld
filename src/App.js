@@ -1,25 +1,29 @@
-import logo from './logo.svg';
+import React, { useState, useEffect } from 'react';
+import MovieList from './components/MovieList';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
+import { getMovieList } from './components/MovieListClient';
+import { MovieListHeading , SearchBox  } from './components/MovieListHeader';
+export function App(){
+	const [movies, setMovies] = useState([]);
+	const [searchValue,setSearchValue] = useState([]);
+  useEffect(() => {
+    getMovieList(
+      setMovies
+    );
+  },[]);
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+	return (
+    <div className='container-fluid movie'>
+      <div className='row d-flex align-items-center mt-4 mb-4'>
+				<MovieListHeading heading='Movies' />
+				<SearchBox searchValue={searchValue} setSearchValue={setSearchValue} />
+			</div>
+			<div className='rows'>
+				<MovieList movies={movies} />
+			</div>
+		</div>
+	);
+};
 
 export default App;
