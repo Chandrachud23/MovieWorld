@@ -1,16 +1,13 @@
-import axios from "axios";
-let getMovieList=(
-    setMovies
-) => 
-{
-    axios
-        .get("http://www.omdbapi.com/?s=star wars&apikey=62f9364d")
-        .then((response) => {
-            setMovies(response.data.Search);
-        })
-        .catch((error) => {
-            console.log(error);
-        });
+
+const getMovieList = async (searchValue,setMovies) => {
+	const url = `http://www.omdbapi.com/?s=${searchValue}&apikey=62f9364d`;
+
+	const response = await fetch(url);
+	const responseJson = await response.json();
+
+	if (responseJson.Search) {
+		setMovies(responseJson.Search);
+	}
 };
 
 export{

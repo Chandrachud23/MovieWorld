@@ -6,16 +6,15 @@ import { getMovieList } from './components/MovieListClient';
 import { MovieListHeading , SearchBox  } from './components/MovieListHeader';
 export function App(){
 	const [movies, setMovies] = useState([]);
-	const [searchValue,setSearchValue] = useState([]);
-  useEffect(() => {
-    getMovieList(
-      setMovies
-    );
-  },[]);
+	const [searchValue, setSearchValue] = useState('');
+	
+	useEffect(() => {
+		getMovieList(searchValue,setMovies);
+	}, [searchValue]);
 
 	return (
-    <div className='container-fluid movie'>
-      <div className='row d-flex align-items-center mt-4 mb-4'>
+		<div className='container-fluid movie-app'>
+			<div className='row d-flex align-items-center mt-4 mb-4'>
 				<MovieListHeading heading='Movies' />
 				<SearchBox searchValue={searchValue} setSearchValue={setSearchValue} />
 			</div>
