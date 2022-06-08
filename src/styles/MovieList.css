@@ -1,6 +1,6 @@
 .images-container{
     flex: auto;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
 }
 .image-container {
 	position: relative;
